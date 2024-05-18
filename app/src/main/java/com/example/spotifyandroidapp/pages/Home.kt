@@ -19,6 +19,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,17 +36,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.spotifyandroidapp.R
-import com.example.spotifyandroidapp.data.Category
+import com.example.spotifyandroidapp.compose.RowScrollView
+import com.example.spotifyandroidapp.data.CategoryData
 import com.example.spotifyandroidapp.data.madeForYouCategories
+import com.example.spotifyandroidapp.data.sampleMusicCategories
 import com.example.spotifyandroidapp.helpers.LimitedText
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil.CoilImage
 
-@Preview
 @Composable
-fun HomeScreen(onBackPressed: () -> Unit) {
+fun HomeScreen() {
   Box(
-    modifier = Modifier.fillMaxSize(),
+    modifier = Modifier
+      .fillMaxSize(),
     contentAlignment = Alignment.Center
   ) {
     Image(
@@ -59,6 +62,7 @@ fun HomeScreen(onBackPressed: () -> Unit) {
         .fillMaxWidth()
         .fillMaxHeight()
         .align(Alignment.Center)
+        .verticalScroll(rememberScrollState()),
     ) {
       Column(
         modifier = Modifier.padding(6.dp),
@@ -67,14 +71,13 @@ fun HomeScreen(onBackPressed: () -> Unit) {
         GreetingsRow()
         WelcomeText()
         GenreScrollView()
-        MadeForYouText()
-        MadeForYouScrollView(madeForYouCategories)
+        MadeForYouScrollView()
+        AlbumScrollView()
+        MusicCategoryRow()
       }
     }
   }
 }
-
-
   @Composable
   fun GreetingsRow(){
     Row(
@@ -158,10 +161,10 @@ fun GenreScrollView() {
         text = category,
         modifier = Modifier
           .padding(horizontal = 0.dp, vertical = 8.dp)
-          .background(Color.LightGray, shape = RoundedCornerShape(16.dp))
+          .background(Color.LightGray, shape = RoundedCornerShape(6.dp))
           .padding(8.dp)
           .width(width = 60.dp)
-          .height(height = 25.dp),
+          .height(height = 22.dp),
         style = TextStyle(
           color = Color.Black,
           fontSize = 16.sp,
@@ -173,9 +176,8 @@ fun GenreScrollView() {
   }
 }
 
-@Preview
 @Composable
-fun MadeForYouText(){
+fun MadeForYouText(text : String ){
   Row(
     modifier = Modifier
       .padding(vertical = 6.dp, horizontal = 10.dp)
@@ -184,7 +186,7 @@ fun MadeForYouText(){
     verticalAlignment = Alignment.CenterVertically,
   ) {
     Text(
-      text = "Made for you",
+      text = text,
       fontSize = 18.sp,
       textAlign = TextAlign.Center,
       fontWeight = FontWeight.Bold,
@@ -193,60 +195,39 @@ fun MadeForYouText(){
     )
   }
 }
-
+//RowAlbumScrollView
 @Composable
-fun MadeForYouScrollView(madeForYouCategories: List<Category>) {
-  Row(
-    modifier = Modifier
-      .padding(horizontal = 10.dp)
-      .horizontalScroll(rememberScrollState()),
-    horizontalArrangement = Arrangement.spacedBy(8.dp),
-  ) {
-
-    madeForYouCategories.forEach { category ->
-      Box(
-        modifier = Modifier
-          .width(120.dp)
-          .padding(4.dp)
-      ) {
-        Column(
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 8.dp),
-          verticalArrangement = Arrangement.Top,
-        ) {
-
-          CoilImage(
-          imageModel = { category.img },
-          imageOptions = ImageOptions(
-            contentScale = ContentScale.Crop,
-            alignment = Alignment.Center,
-          ),
-          modifier = Modifier
-            .fillMaxWidth()
-            .height(120.dp)
-            .width(100.dp)
-            .padding(bottom = 8.dp)
-        )
-          LimitedText(
-            text = category.artist,
-            maxCharacters = 10
-          )
-
-          Text(
-            text = category.album,
-            fontSize = 12.sp,
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Normal,
-            fontFamily = FontFamily.SansSerif
-          )
-        }
-      }
-    }
-  }
+fun MadeForYouScrollView() {
+  MadeForYouText("Made for you")
+  RowScrollView(
+    items = madeForYouCategories,
+    maxCharacters = 10,
+    modifier = Modifier.fillMaxWidth()
+  )
 }
 
+@Composable
+fun AlbumScrollView() {
+  MadeForYouText("Album for you")
+  RowScrollView(
+    items = madeForYouCategories,
+    maxCharacters = 10,
+    modifier = Modifier.fillMaxWidth()
+  )
+}
 
+@Composable
+fun MusicCategoryRow() {
+  MadeForYouText("Made for me")
+  RowScrollView(
+    items = sampleMusicCategories,
+    maxCharacters = 10,
+    modifier = Modifier.fillMaxWidth()
+  )
+}
 
-
-
+@Preview(showBackground = true)
+@Composable
+fun PreviewHomeScreen() {
+  HomeScreen()
+}

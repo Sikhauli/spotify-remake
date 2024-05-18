@@ -4,6 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import com.example.spotifyandroidapp.compose.BottomNavigationMainScreen
 import com.example.spotifyandroidapp.pages.HomeScreen
 import com.example.spotifyandroidapp.pages.WelcomeScreen
 
@@ -13,9 +14,7 @@ fun NavGraphBuilder.rootNavigation(navController: NavHostController) {
       WelcomeScreen(navController = navController)
     }
     composable("home") {
-      HomeScreen(onBackPressed = {
-        navController.popBackStack()
-      })
+      BottomNavigationMainScreen()
     }
   }
 }

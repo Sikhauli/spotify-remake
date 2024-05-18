@@ -60,6 +60,7 @@ dependencies {
   implementation(libs.landscapist.coil)
   implementation(libs.androidx.navigation.compose.v240)
   implementation(libs.volley)
+  implementation(libs.androidx.webkit)
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)

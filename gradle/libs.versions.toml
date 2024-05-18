@@ -16,6 +16,7 @@ navigationCompose = "2.7.7"
 navigationComposeVersion = "2.4.0"
 navigationRuntimeKtx = "2.7.7"
 volley = "1.2.1"
+webkit = "1.11.0"
 
 [libraries]
 accompanist-coil = { module = "com.google.accompanist:accompanist-coil", version.ref = "accompanistCoil" }
@@ -40,6 +41,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 landscapist-coil = { module = "com.github.skydoves:landscapist-coil", version.ref = "landscapistCoil" }
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
+androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "webkit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
