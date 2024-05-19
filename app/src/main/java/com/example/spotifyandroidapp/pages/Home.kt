@@ -36,13 +36,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.spotifyandroidapp.R
+import com.example.spotifyandroidapp.compose.RowAlbumScrollView
 import com.example.spotifyandroidapp.compose.RowScrollView
-import com.example.spotifyandroidapp.data.CategoryData
 import com.example.spotifyandroidapp.data.madeForYouCategories
 import com.example.spotifyandroidapp.data.sampleMusicCategories
-import com.example.spotifyandroidapp.helpers.LimitedText
-import com.skydoves.landscapist.ImageOptions
-import com.skydoves.landscapist.coil.CoilImage
+
 
 @Composable
 fun HomeScreen() {
@@ -209,7 +207,7 @@ fun MadeForYouScrollView() {
 @Composable
 fun AlbumScrollView() {
   MadeForYouText("Album for you")
-  RowScrollView(
+  RowAlbumScrollView(
     items = madeForYouCategories,
     maxCharacters = 10,
     modifier = Modifier.fillMaxWidth()
