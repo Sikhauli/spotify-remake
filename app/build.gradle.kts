@@ -61,6 +61,8 @@ dependencies {
   implementation(libs.androidx.navigation.compose.v240)
   implementation(libs.volley)
   implementation(libs.androidx.webkit)
+  implementation(libs.androidx.media3.exoplayer)
+  implementation(libs.androidx.media3.ui)
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
